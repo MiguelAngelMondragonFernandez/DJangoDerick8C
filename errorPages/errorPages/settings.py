@@ -23,9 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h%#7(krk@e&)vt6u*!2$g(wm+g71h@iu+=!694*s*embtuhmrl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1',
+    '*'
+]
 
 
 # Application definition
@@ -122,3 +126,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+#Definir lo qur debe hacer Django cuabdo no encuentra una pagina
+HANDLER404 = 'app.views.show_error_404'
+#Definir lo qur debe hacer Django cuabdo no encuentra una pagina
+HANDLER500 = 'app.views.show_error_500'
