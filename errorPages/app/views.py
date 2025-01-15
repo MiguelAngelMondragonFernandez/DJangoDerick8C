@@ -18,3 +18,6 @@ def show_error500(request):
 
 def generar_error(request):
     return 1/0
+
+def onepage(request):
+    return render(request, 'onePage.html', status=200)
