@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .utils import google_search
 
 
 # Create your views here.
@@ -21,3 +22,11 @@ def generar_error(request):
 
 def onepage(request):
     return render(request, 'onePage.html', status=200)
+
+def busqueda(request):
+    query = request.GET.get("q","")
+    results = []
+    if query:
+        data = google_search(query)
+        results = data.get('items', [])
+    return render(request, 'search.html', {'results': results, 'query': query})

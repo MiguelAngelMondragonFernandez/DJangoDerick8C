@@ -24,4 +24,5 @@ urlpatterns = [
     path('user/', user, name = 'user'),
     path('error/', generar_error, name = 'error'),
     path('onepage/', onepage, name = 'onepage'),
+    path('search/', busqueda, name = 'search'),
 ]
