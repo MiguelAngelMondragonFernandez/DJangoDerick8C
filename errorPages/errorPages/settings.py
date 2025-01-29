@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+#Esta linea es para que Django pueda conectarse a la base de datos
+import pymysql
+pymysql.install_as_MySQLdb()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h%#7(krk@e&)vt6u*!2$g(wm+g71h@iu+=!694*s*embtuhmrl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost', 
@@ -41,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -80,8 +85,12 @@ WSGI_APPLICATION = 'errorPages.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'error',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 
@@ -136,3 +145,11 @@ HANDLER500 = 'app.views.show_error_500'
 
 GOOGLE_SEARCH_API = 'AIzaSyDthG8f_NeAxHKKVpxCEs039ryL4R2AGbQ'
 ID_SEARCH_ENGINE = '73ccca8b558f24a29'
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/home' # Dónde irán los usuarios tras iniciar sesión
+LOGOUT_REDIRECT_URL = '/users/login/'
