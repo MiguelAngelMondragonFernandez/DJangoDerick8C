@@ -1,15 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Validación</title>
 </head>
+
 <body>
-    <form method="post">
+    <form method="post" class="container col-4 ml-5 mt-5 rounded-3 border border-primary p-5" onsubmit="return validarForm(event)">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Registrarse</button>
-        </form>
+        <button class="btn btn-success" type="submit">Registrarse</button>
+    </form>
+
+    <script>
+        function validarForm(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            const pass1 = document.getElementById('id_password1').value;
+            const pass2 = document.getElementById('id_password2').value;
+            let message = '';
+
+            if (!/[!#$%&?]/.test(pass1)) {
+                message += 'La contraseña debe contener al menos un carácter especial (!, #, $, %, &, ?).\n';
+            }
+            if (pass1.length < 8) {
+                message += 'La contraseña debe tener al menos 8 caracteres.\n';
+            }
+            if (pass1 !== pass2) {
+                message += 'Las contraseñas no coinciden.\n';
+            }
+            if (!/[0-9]/.test(pass1)) {
+                message += 'La contraseña debe tener al menos un número.\n';
+            }
+            if (!/[A-Z]/.test(pass1)) {
+                message += 'La contraseña debe tener al menos una mayúscula.\n';
+            }
+
+            if (message !== '') {
+                Swal.fire({
+                    title: 'Error en la contraseña',
+                    text: message,
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+                return false; // Evita el envío del formulario
+            }
+
+            // Si pasa la validación, enviamos el formulario manualmente
+            event.target.submit();
+        }
+    </script>
 </body>
+
 </html>
