@@ -143,8 +143,8 @@ HANDLER404 = 'app.views.show_error_404'
 #Definir lo qur debe hacer Django cuabdo no encuentra una pagina
 HANDLER500 = 'app.views.show_error_500'
 
-GOOGLE_SEARCH_API = 'AIzaSyDthG8f_NeAxHKKVpxCEs039ryL4R2AGbQ'
-ID_SEARCH_ENGINE = '73ccca8b558f24a29'
+GOOGLE_SEARCH_API = ''
+ID_SEARCH_ENGINE = ''
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
