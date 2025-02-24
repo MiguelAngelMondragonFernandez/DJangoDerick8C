@@ -1,8 +1,6 @@
 from django import forms
 from .models import Producto
 
-#Se puede crear un formulario para cada modelo que exista
-
 class productoForm (forms.ModelForm):
     class Meta:
         #Definir de que modelo se va a crear el formulario

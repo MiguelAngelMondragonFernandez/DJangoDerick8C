@@ -30,4 +30,5 @@ urlpatterns = [
     path("get_error_logs/", get_error_logs, name="get_error_logs"),
     path("users/", include("users.urls")),
     path("productos/", include("productos.urls")),
+    path("categorias/", include("categorias.urls")),
 ]
