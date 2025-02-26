@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'users',
     'productos',
     'categorias',
+    'alumnos',
     'rest_framework',
 ]
 
