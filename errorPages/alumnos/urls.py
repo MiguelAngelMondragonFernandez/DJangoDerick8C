@@ -8,5 +8,6 @@ router.register(r'api', AlumnoViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('agregar/', agregar_alumno, name='agregar_alumno'),
 
 ]
