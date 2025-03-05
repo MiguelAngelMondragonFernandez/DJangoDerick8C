@@ -6,7 +6,7 @@ class productoForm (forms.ModelForm):
         #Definir de que modelo se va a crear el formulario
         model = Producto
         #Definir que campos se van a mostrar en el formulario
-        fields = ['nombre', 'precio', 'imagen']
+        fields = ['nombre', 'precio', 'imagen', 'categoria']
 
 
         #Definir como se deben de mostrar los campos
@@ -29,12 +29,18 @@ class productoForm (forms.ModelForm):
                     "placeholder": "Ingrese la URL de la imagen del producto",
                 }
             ),
+            "categoria": forms.Select(
+                attrs={
+                    "class": "form-control"
+                }
+            )
         }
 
         labels = {
             "nombre": "Nombre del producto",
             "precio": "Moneda nacional",
             "imagen": "URL de la imagen del producto",
+            "categoria": "Categoría del producto",
         }
 
 
@@ -50,4 +56,7 @@ class productoForm (forms.ModelForm):
             "imagen": {
                 "required": "La URL de la imagen del producto es requerida",
             },
+            "categoria": {
+                "required": "La categoría del producto es requerida",
+            }
         }

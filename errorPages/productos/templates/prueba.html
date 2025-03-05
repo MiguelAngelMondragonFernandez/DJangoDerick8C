@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>    
+    <style>
+        #page {
+            transform: translateX(-100%);
+            animation: slideIn 2s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0%);
+            }
+            to {
+                transform: translateX(100%);
+            }
+            
+        }
+
+        #page2 {
+            transform: scale(0.0);
+            animation: zoomIn 2s forwards;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body id="page2">
+    <h1>Hello Unhappy</h1>
+    <img src="https://reonafc.com/files/4/n78/special/5th_anniversary/assets/img/top/monster3.png" alt="" srcset="">
+    <p>Kuro is a monster, but is cute</p>
+    <p>He is a good monster</p>
+    <a href="/productos/agregar/">agregar producto</a>
+    <br>
+    <a href="{% url 'agregar_producto'%}">Agregar productos</a>
+    <!---->
+    <script>
+        document.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.body.style.animation = 'slideIn 2s forwards'
+                setTimeout(() => {
+                    window.location.href = a.href;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
