@@ -30,8 +30,6 @@ SECRET_KEY = 'django-insecure-h%#7(krk@e&)vt6u*!2$g(wm+g71h@iu+=!694*s*embtuhmrl
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost', 
-    '127.0.0.1',
     '*'
 ]
 
@@ -51,6 +49,8 @@ INSTALLED_APPS = [
     'categorias',
     'alumnos',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +61,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:5173",
+    "http://localhost:5173",
 ]
 
 ROOT_URLCONF = 'errorPages.urls'
@@ -157,3 +167,9 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/home' # Dónde irán los usuarios tras iniciar sesión
 LOGOUT_REDIRECT_URL = '/users/login/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
